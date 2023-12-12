@@ -1,0 +1,20 @@
+version: '3'
+services:
+
+  # PHPコード生成用コンテナ
+  grpc_php:
+    build: ./grpc-php
+    volumes:
+      - ../:/grpc-training
+    entrypoint: /etc/services.sh
+    platform: linux/x86_64
+
+  # Golangコード生成用コンテナ
+  grpc_go:
+    build: ./grpc-go
+    volumes:
+      - ../:/go/src/grpc-training/
+    entrypoint: /etc/services.sh
+    platform: linux/x86_64
+    environment:
+      - "GO111MODULE=on"
